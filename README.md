@@ -1,2 +1,2 @@
 # mysql_note
-my MySQL note
+my MySQL note :smile:
