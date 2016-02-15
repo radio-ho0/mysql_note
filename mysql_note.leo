@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Created by Leo (http://leoeditor.com/leo_toc.html) -->
-<?xml-stylesheet ekr_test?>
-<leo_file xmlns:leo="http://www.leo-editor.org/2011/leo" >
+<!-- Created by Leo: http://leoeditor.com/leo_toc.html -->
+<?xml-stylesheet ekr_test ?>
+<leo_file xmlns:leo="http://leoeditor.com/namespaces/leo-python-editor/1.1" >
 <leo_header file_format="2" tnodes="0" max_tnode_index="0" clone_windows="0"/>
 <globals body_outline_ratio="0.5" body_secondary_ratio="0.5">
 	<global_window_position top="50" left="50" height="500" width="700"/>
@@ -10,6 +10,11 @@
 <preferences/>
 <find_panel_settings/>
 <vnodes>
+<v t="mike.20160214235114.1"><vh>@settings</vh>
+<v t="mike.20160214235114.2"><vh>@data qt-gui-plugin-style-sheet</vh></v>
+<v t="mike.20160214235114.3"><vh>@string initial_split_orientation = horizontal</vh></v>
+</v>
+<v t="mike.20160215002037.1"><vh>rst title</vh></v>
 <v t="root.20160211145428.1692" a="E"><vh>ho0 - mysql note</vh>
 <v t="root.20160214141220.1574"><vh>Install MySQL On Slackware</vh></v>
 <v t="root.20160211145428.1694"><vh>Creating a database</vh></v>
@@ -28,6 +33,32 @@
 </v>
 </vnodes>
 <tnodes>
+<t tx="mike.20160214235114.1">setting</t>
+<t tx="mike.20160214235114.2"></t>
+<t tx="mike.20160214235114.3"></t>
+<t tx="mike.20160215002037.1">.. code-block :: rst
+    
+    abc
+
+一级标题
+========
+
+二级标题
+--------
+
+三级标题
+~~~~~~~~
+
+四级标题
+^^^^^^^^
+
+五级标题
+++++++++
+
+六级标题
+````````
+
+</t>
 <t tx="root.20160211145428.1692">ho0
 ##############
 
@@ -52,6 +83,8 @@ code ::
 <t tx="root.20160211145428.1693"></t>
 <t tx="root.20160211145428.1694">:from: http://zetcode.com/databases/mysqltutorial/firststeps/
 
+show db::
+
         mysql&gt; SHOW DATABASES;
         +--------------------+
         | Database           |
@@ -63,12 +96,11 @@ code ::
         +--------------------+
 
 The ``SHOW DATABASES`` statement shows all available databases on our system. Note that SQL statements are terminated with a **semicolon**. 
-There are four databases present. The information_schema, mysql, and performance_schema are MySQL system databases. The test database is available as a workspace for users to try things out. It is empty; there are no tables. 
-
+There are four databases present. The information_schema, mysql, and performance_schema are MySQL system databases. The test database is available as a workspace for users to try things out. It is empty; there are no tables::
 
     mysql&gt; CREATE DATABASE mydb;
 
-This statement creates a new database. Throughout this tutorial, we will use the mydb database. To create a new database, we need to have certain privileges. Remember that we have connected to the server with the root user, which is a superuser and has all privileges.
+This statement creates a new database. Throughout this tutorial, we will use the mydb database. To create a new database, we need to have certain privileges. Remember that we have connected to the server with the root user, which is a superuser and has all privileges::
 
     mysql&gt; SHOW DATABASES;
     +--------------------+
@@ -81,17 +113,17 @@ This statement creates a new database. Throughout this tutorial, we will use the
     | test               |
     +--------------------+
 
-Showing all databases, the mydb database is among them.
+Showing all databases, the mydb database is among them::
 
     mysql&gt; use mydb;
     Database changed
 
-In order to work with a database, we must first select it. We select a specific database with a use command.
+In order to work with a database, we must first select it. We select a specific database with a use command::
 
     mysql&gt; SHOW TABLES;
     Empty set (0.00 sec)
 
-The ``SHOW TABLES`` statement shows all available tables in a database. Since it is a newly created database, no tables are found.
+The ``SHOW TABLES`` statement shows all available tables in a database. Since it is a newly created database, no tables are found::
 
         mysql&gt; source cars.sql
         Database changed
@@ -101,7 +133,7 @@ The ``SHOW TABLES`` statement shows all available tables in a database. Since it
         
         ...
 
-In the first chapter, we have provided some SQL scripts to create some tables. We use the source command to execute the cars.sql script, which creates a Cars table for us.
+In the first chapter, we have provided some SQL scripts to create some tables. We use the source command to execute the cars.sql script, which creates a Cars table for us::
 
     mysql&gt; SHOW TABLES;
     +----------------+
@@ -131,27 +163,27 @@ And this is the data in the table.
 Creating a new user
 ***********************
 
-Similarly to Unix **root** account, it is advised __not__ to use the MySQL superuser root account for our tasks. We should use the root account only when it is necessary. 
+Similarly to Unix **root** account, it is advised *not* to use the MySQL superuser root account for our tasks. We should use the root account only when it is necessary. 
 
-We rather create a new account that we will use for our tasks. This user will have limited privileges. When using the root user we could accidentally do a lot of harm to our data.
+We rather create a new account that we will use for our tasks. This user will have limited privileges. When using the root user we could accidentally do a lot of harm to our data::
 
     mysql&gt; CREATE USER user12@localhost IDENTIFIED BY '34klq*';
 
-The above statement created a new user called ``user12``. The accout has password ``34klq*``. The user is created, but he has no privileges.
+The above statement created a new user called ``user12``. The accout has password ``34klq*``. The user is created, but he has no privileges::
 
     mysql&gt; GRANT ALL ON mydb.* to user12@localhost;
 
-This statement grants all privileges to user12 for all database objects on the mydb database. These privileges will be sufficient for the examples in this tutorial
+This statement grants all privileges to **user12** for all database objects on the mydb database. These privileges will be sufficient for the examples in this tutorial
 </t>
 <t tx="root.20160211145428.1698">Examining the database
 ############################
 
 :from: http://zetcode.com/databases/mysqltutorial/quick/
 
-John Tips ::
+John **Tips** ::
     describe == desc
 
- In this section, we are going to look at the tables of the world database in general.
+ In this section, we are going to look at the tables of the world database in general::
 
     mysql&gt; SHOW TABLES;
     +-----------------+
@@ -162,7 +194,7 @@ John Tips ::
     | CountryLanguage |
     +-----------------+
     
-We show all available tables with the ``SHOW TABLES`` statement. There are three.
+We show all available tables with the ``SHOW TABLES`` statement. There are three::
 
     mysql&gt; DESCRIBE City;
     +-------------+----------+------+-----+---------+----------------+
@@ -175,15 +207,15 @@ We show all available tables with the ``SHOW TABLES`` statement. There are three
     | Population  | int(11)  | NO   |     | 0       |                |
     +-------------+----------+------+-----+---------+----------------+
 
-With the ``DESCRIBE`` statement, we can see the table structure of the City table. We see the column names and their data types. Plus other important information.
+With the ``DESCRIBE`` statement, we can see the table structure of the City table. We see the column names and their data types. Plus other important information::
 
     mysql&gt; SHOW CREATE TABLE City;
 
-If we wanted to find out the SQL to create the City table, we would issue the ``SHOW CREATE TABLE City`` statement.
+If we wanted to find out the SQL to create the City table, we would issue the ``SHOW CREATE TABLE City`` statement::
 
     $ mysqldump -uroot -p world City &gt; city.sql
 
-Here we use the ``mysqldump`` tool to back up the City table.
+Here we use the ``mysqldump`` tool to back up the City table::
 
     mysql&gt; DROP TABLE City;
     
@@ -195,7 +227,7 @@ Here we use the ``mysqldump`` tool to back up the City table.
     | CountryLanguage |
     +-----------------+
 
-We use the ``DROP TABLE`` statement to drop the ``City`` table. Subsequent statement verifies that the table was removed.
+We use the ``DROP TABLE`` statement to drop the ``City`` table. Subsequent statement verifies that the table was removed::
 
     mysql&gt; source city.sql
     
@@ -212,12 +244,12 @@ We recreate the ``City`` table from the backup. The source command executes the 
 
 
 Queries
-******************
+----------------------------------
 
 Queries are used to look up data from the database tables.
 Limiting data output
 
-There are thousands of rows in the tables of the database. They cannot be displayed all on the screen. We can control the number of rows to be displayed with the LIMIT clause.
+There are thousands of rows in the tables of the database. They cannot be displayed all on the screen. We can control the number of rows to be displayed with the `LIMIT` clause::
 
     mysql&gt; SELECT Id, Name, Population FROM City LIMIT 10;
     +----+----------------+------------+
@@ -235,7 +267,7 @@ There are thousands of rows in the tables of the database. They cannot be displa
     | 10 | Tilburg        |     193238 |
     +----+----------------+------------+
 
-In the above query, we show three of the five columns of the City table. There are lots of rows in the table. We limit the query to the first 10 rows.
+In the above query, we show three of the five columns of the City table. There are lots of rows in the table. We limit the query to the first 10 rows::
 
     mysql&gt; SELECT Id, Name, Population FROM City LIMIT 15, 5;
     +----+-------------------+------------+
@@ -248,7 +280,7 @@ In the above query, we show three of the five columns of the City table. There a
     | 20 | ´s-Hertogenbosch  |     129170 |
     +----+-------------------+------------+
 
-The ``LIMIT`` clause can be followed by two numbers. The first one is the offset and the second one is the number of rows to display. Our query shows rows 16-20.
+The ``LIMIT`` clause can be followed by two numbers. The first one is the offset and the second one is the number of rows to display. Our query shows rows 16-20::
 
     mysql&gt; pager less
     PAGER set to 'less'
@@ -264,19 +296,21 @@ The ``LIMIT`` clause can be followed by two numbers. The first one is the offset
 
 Since the City table has more than four thousand rows, we cannot see them in one screen. We can use the pager command to show the data in a less program. 
 
-We can navigate through the data with the cursor keys or page down, page up keys. If we want to use no pager program, simply hit the pager without an argument.
+We can navigate through the data with the cursor keys or page down, page up keys. If we want to use no pager program, simply hit the pager without an argument::
 
     $ mysql -u user12 -p world -e "SELECT * FROM City" &gt; city
     Enter password: 
     $ ls -sh city
     144K city
     
-The mysql command tool can be used in a **non-interactive way**. We specify the SQL statement after the ``-e`` option and redirect the result to the city file. 
+The mysql command tool can be used in a **non-interactive way**. We specify the SQL statement after the `-e` option and redirect the result to the city file. 
 
 Now we can use any text editor to display the data.
 
 The COUNT(), MAX(), MIN() functions
-***************************************************
+------------------------------------------
+
+code::
 
     mysql&gt; SELECT COUNT(Id) AS 'Number of rows' FROM City;
     +----------------+
@@ -285,7 +319,7 @@ The COUNT(), MAX(), MIN() functions
     |           4079 |
     +----------------+
 
-There are 4079 cities in the table. We use the built-in ``COUNT()`` function to find out the number of rows.
+There are 4079 cities in the table. We use the built-in ``COUNT()`` function to find out the number of rows::
 
     mysql&gt; SELECT Name, Population FROM City
         -&gt; WHERE Population = (SELECT Max(Population) FROM City);
@@ -295,9 +329,9 @@ There are 4079 cities in the table. We use the built-in ``COUNT()`` function to 
     | Mumbai (Bombay) |   10500000 |
     +-----------------+------------+
 
-The above query shows the most populated city in the table. The SQL is a special type of a query called a subquery. 
+The above query shows the **most** populated city in the table. The SQL is a special type of a query called a subquery. 
 
-The outer query uses the data returned by the inner query. The inner query is bounded by parentheses.
+The outer query uses the data returned by the inner query. The inner query is bounded by parentheses::
 
     mysql&gt; SELECT Name, Population FROM City 
         -&gt; WHERE Population = (SELECT Min(Population) FROM City);
@@ -308,9 +342,9 @@ The outer query uses the data returned by the inner query. The inner query is bo
     +-----------+------------+
 
 This subquery shows the least populated city in the table.
-Selecting specific rows with the ``WHERE`` clause
+Selecting specific rows with the `WHERE` clause
 
-The ``WHERE`` clause can be used to filter the results. It provides a selection criteria to select only specific rows from the data.
+The `WHERE` clause can be used to **filter** the results. It provides a selection criteria to select only specific rows from the data::
 
     mysql&gt; SELECT Name, Population FROM City 
         -&gt; WHERE Population &gt; 1000000;
@@ -325,7 +359,7 @@ The ``WHERE`` clause can be used to filter the results. It provides a selection 
     | Córdoba                  |    1157507 |
     ...
 
-The above SQL statement returns all cities with a population above one million people.
+The above SQL statement returns all cities with a population above one million people::
 
     mysql&gt; SELECT Name FROM City WHERE Name LIKE 'Kal%';
     +-------------+
@@ -341,7 +375,7 @@ The above SQL statement returns all cities with a population above one million p
     +-------------+
     7 rows in set (0.00 sec)
 
-Here we select all city names which begin with Kal. We have found seven cities in the table. We can look for a specific pattern in the column with the LIKE clause.
+Here we select all city names which begin **with** Kal. We have found seven cities in the table. We can look for a specific pattern in the column with the `LIKE` clause::
 
     mysql&gt; SELECT Name, Population FROM City 
         -&gt; WHERE ID IN (5, 32, 344, 554);
@@ -355,7 +389,7 @@ Here we select all city names which begin with Kal. We have found seven cities i
     +-------------------+------------+
     4 rows in set (0.00 sec)
     
-This SQL code returns cities and their populations for rows with Id 5, 32, 344, and 554.
+This SQL code returns cities and their populations for rows with Id 5, 32, 344, and 554::
 
     mysql&gt; SELECT * FROM City WHERE Name = 'Bratislava';
     +------+------------+-------------+------------+------------+
@@ -365,7 +399,7 @@ This SQL code returns cities and their populations for rows with Id 5, 32, 344, 
     +------+------------+-------------+------------+------------+
     1 row in set (0.00 sec)
 
-With the above SQL statement we select all columns for one specific city, namely Bratislava.
+With the above SQL statement we select all columns for one specific city, namely Bratislava::
 
     mysql&gt; SELECT Name, Population FROM City 
         -&gt; WHERE Population BETWEEN 670000 AND 700000;
@@ -388,12 +422,14 @@ With the above SQL statement we select all columns for one specific city, namely
     +----------------+------------+
     13 rows in set (0.00 sec)
 
-Say we wanted to find out cities with a population between two specific values. There is a ``BETWEEN`` operator for this. 
+Say we wanted to find out cities with a population **between** two specific values. There is a `BETWEEN` operator for this. 
 
 We have found 13 cities with a population in the range 670,000 and 700,000.
-Ordering data
 
-Ordering data can be done with the ORDER BY clause.
+Ordering data
+----------------------------
+
+Ordering data can be done with the `ORDER BY` clause::
 
     mysql&gt; SELECT Name, Population FROM City
         -&gt; ORDER BY Population DESC LIMIT 10;
@@ -413,7 +449,7 @@ Ordering data can be done with the ORDER BY clause.
     +-------------------+------------+
     10 rows in set (0.00 sec)
 
-We find the 10 most populated cities. We order the data by population from the most populated to the least populated city. We limit the output with the LIMIT clause.
+We find the 10 most populated cities. We order the data by population from the most populated to the least populated city. We limit the output with the `LIMIT` clause::
 
     mysql&gt; SELECT Name, Population FROM City 
         -&gt; ORDER BY Population ASC LIMIT 10;
@@ -433,7 +469,7 @@ We find the 10 most populated cities. We order the data by population from the m
     +---------------------+------------+
     10 rows in set (0.01 sec)
 
-Here we get the least populated cities. This time we order the data in the ascending order. For this we use the ASC keyword.
+Here we get the least populated cities. This time we order the data in the ascending order. For this we use the `ASC` keyword::
 
     mysql&gt; SELECT Name, Population FROM City 
         -&gt; ORDER BY Name LIMIT 10;
@@ -453,10 +489,10 @@ Here we get the least populated cities. This time we order the data in the ascen
     +------------------------+------------+
     10 rows in set (0.01 sec)
 
-In the above SQL statement we order data by city name and get the first ten cities.
+In the above SQL statement we order data by city name and get the first *ten* cities.
 Grouping data
 
-The ``GROUP BY`` clause is used to combine database records with identical values into a single record. It is often used with the aggregation functions.
+The ``GROUP BY`` clause is used to combine database records with identical values into a single record. It is often used with the aggregation functions::
 
     mysql&gt; SELECT District, SUM(Population) FROM City
         -&gt; WHERE District = 'New York' GROUP BY District;
@@ -467,7 +503,7 @@ The ``GROUP BY`` clause is used to combine database records with identical value
     +----------+-----------------+
     1 row in set (0.00 sec)
 
-The above SQL statement returns the total number of people in the towns of the New York district, which are listed in our database.
+The above SQL statement returns the total number of people in the towns of the New York district, which are listed in our database::
 
     mysql&gt; SELECT Name, District, Population FROM City
         -&gt; WHERE District = 'New York';
@@ -483,7 +519,7 @@ The above SQL statement returns the total number of people in the towns of the N
     +-----------+----------+------------+
     6 rows in set (0.01 sec)
 
-The previous number is a sum of these six cities.
+The previous number is a sum of these **six** cities::
 
     mysql&gt; SELECT District, SUM(Population) FROM City
         -&gt; WHERE CountryCode = 'USA' GROUP BY District
@@ -500,10 +536,12 @@ The previous number is a sum of these six cities.
     +------------+-----------------+
     6 rows in set (0.00 sec)
 
-We select all districts which have population over 3 million people. When we work with groups of data, we use the ``HAVING`` clause instead of the ``WHERE`` clause.
-Updating, deleting, and inserting data
+We select all districts which have population **over** 3 million people. When we work with groups of data, we use the ``HAVING`` clause instead of the ``WHERE`` clause.
 
-Next we will concern ourselves with updating, deleting, and inserting data.
+Updating, deleting, and inserting data
+-------------------------------------------------
+
+Next we will concern ourselves with updating, **deleting**, and inserting data::
 
     mysql&gt; SELECT Name, HeadOfState FROM Country
         -&gt; WHERE Name = 'United States';
@@ -514,12 +552,12 @@ Next we will concern ourselves with updating, deleting, and inserting data.
     +---------------+----------------+
     1 row in set (0.00 sec)
 
-As we have already stated, the world database is outdated. George Bush is not the president of the USA anymore.
+As we have already stated, the world database is outdated. George Bush is **not** the president of the USA anymore::
 
     mysql&gt; UPDATE Country SET HeadOfState = 'Barack Obama'
         -&gt; WHERE Name = 'United States';
 
-With the ``UPDATE`` statement we change the row to the actual data.
+With the ``UPDATE`` statement we **change** the row to the actual data::
 
     mysql&gt; SELECT Name, HeadOfState FROM Country WHERE Name = 'United States';
     +---------------+--------------+
@@ -529,11 +567,11 @@ With the ``UPDATE`` statement we change the row to the actual data.
     +---------------+--------------+
     1 row in set (0.00 sec)
 
-We have successfully updated the row.
+We have successfully updated the row::
 
     mysql&gt; CREATE TABLE First10 engine=MEMORY SELECT * FROM City LIMIT 10;
 
-We create a temporary table in the memory. It will contain first ten cities from the City table.
+We create a temporary table in the memory. It will contain first ten cities from the City table::
 
     mysql&gt; SELECT * FROM First10;
     +----+----------------+-------------+---------------+------------+
@@ -552,11 +590,11 @@ We create a temporary table in the memory. It will contain first ten cities from
     +----+----------------+-------------+---------------+------------+
     10 rows in set (0.00 sec)
 
-This is the contents of the First10 table.
+This is the contents of the First10 table::
 
     mysql&gt; DELETE FROM First10 WHERE ID IN (2, 4, 6, 8, 10);
 
-With the ``DELETE FROM`` statement and the ``WHERE`` clause we delete every second row from the First10 table.
+With the ``DELETE FROM`` statement and the ``WHERE`` clause we **delete** every second row from the First10 table::
     
     mysql&gt; SELECT * FROM First10;
     +----+-----------+-------------+---------------+------------+
@@ -570,7 +608,7 @@ With the ``DELETE FROM`` statement and the ``WHERE`` clause we delete every seco
     +----+-----------+-------------+---------------+------------+
     5 rows in set (0.00 sec)
 
-We have five rows left in the table.
+We have five rows left in the table::
     
     mysql&gt; TRUNCATE TABLE First10;
     Query OK, 0 rows affected (0.00 sec)
@@ -578,7 +616,7 @@ We have five rows left in the table.
     mysql&gt; SELECT * FROM First10;
     Empty set (0.00 sec)
 
-We delete all rows from the table with the ``TRUNCATE`` statement. There is no data left.
+We delete **all** rows from the table with the ``TRUNCATE`` statement. There is no data left::
 
     mysql&gt; INSERT INTO First10 VALUES(1, 'Kabul', 'AFG', 'Kabol', 1780000);
     
@@ -590,27 +628,30 @@ We delete all rows from the table with the ``TRUNCATE`` statement. There is no d
     +----+-------+-------------+----------+------------+
     1 row in set (0.00 sec)
 
-With the ``INSERT INTO`` statement, we insert one row into the table.
+With the ``INSERT INTO`` statement, we insert one row into the table::
     
     mysql&gt; DROP TABLE First10;
     Query OK, 0 rows affected (0.00 sec)
 
-We drop the table from the database.
+We **drop** the table from the database.
 
-In this chapter, we have quickly introduced some basics of the MySQL database. We go into more details in the following chapters. </t>
+In this chapter, we have quickly introduced some basics of the MySQL database. 
+
+We go into more details in the following chapters. </t>
 <t tx="root.20160211145428.1699">MySQL data types
+=========================
 
 :from: http://zetcode.com/databases/mysqltutorial/datatypes/
 
- In this part of the MySQL tutorial, we will cover MySQL data types.
+In this part of the MySQL tutorial, we will cover MySQL data types.
 
 A data type is a set of representable values. Each value belongs to one data type. Items that can be referenced by a name, such as SQL parameters, columns, fields, attributes, and variables, also have declared types.
 
 MySQL supports three groups of data types:
 
-    Numeric
-    Date &amp; time
-    String
+    * Numeric
+    * Date &amp; time
+    * String
 
 Choosing the right data types for columns is a part of the initial design of the database. Data types ensure the correctness of the data provided. They ensure that the data is used in a meaningful way. 
 
@@ -619,27 +660,29 @@ This is important when we do comparisons, ordering of data. For example dates ar
 Data types enable MySQL to do validation on the data inserted. Finally, with correct data types for table columns, we allow MySQL to optimise the queries and use less disk space.
 
 Numbers
-***************
+-------------------------
 
 Numeric types can be either integers or floating point numbers.
 
-    Integers
-        TINYINT
-        SMALLINT
-        MEDIUMINT
-        INTEGER
-        BIGINT
-    Floating points
-        FLOAT
-        DOUBLE
-        DECIMAL
+   * Integers
+       * TINYINT
+       * SMALLINT
+       * MEDIUMINT
+       * INTEGER
+       * BIGINT
+   * Floating points
+       * FLOAT
+       * DOUBLE
+       * DECIMAL
 
 Integers
-```````````````
+~~~~~~~~~~~~~~~~~~
 
-Integers are a subset of the real numbers. They are written without a fraction or a decimal component. Integers fall within a set Z = {..., -2, -1, 0, 1, 2, ...} Integers are infinite. Computers can practically work only with a subset of integer values, because computers have finite capacity. Integers are used to count discrete entities. We can have 3, 4, 6 cars, but we cannot have 3.33 cars. We can have 3.33 kilograms.
+Integers are a subset of the real numbers. They are written without a fraction or a decimal component. Integers fall within a set Z = {..., -2, -1, 0, 1, 2, ...} Integers are infinite. 
 
-The following is a table of integer types in MySQL: TINYINT, MEDIUMINT and BIGINT are MySQL extensions to the SQL standard.
+Computers can practically work only with a **subset** of integer values, because computers have finite capacity. Integers are used to count discrete entities. We can have 3, 4, 6 cars, but we cannot have 3.33 cars. We can have 3.33 kilograms.
+
+The following is a table of integer types in MySQL: `TINYINT, MEDIUMINT and BIGINT` are MySQL extensions to the SQL standard:
 
 +------------+--------+----------------------+----------------------+
 |  Data type |  Bytes | Minimum value        |  Maximum value       |
@@ -656,11 +699,11 @@ The following is a table of integer types in MySQL: TINYINT, MEDIUMINT and BIGIN
 +------------+--------+----------------------+----------------------+
 
 
-The integer types differ in their storage. We can choose values that fit our requirements.
+The integer types differ in their storage. We can choose values that fit our requirements::
 
     mysql&gt; CREATE TABLE Ages(Id SMALLINT, Age TINYINT) ENGINE=Memory;
 
-We have created a **temporary** Ages table. This will be only a temporary testing table, so there will be only a few rows. ``SMALLINT`` will certainly suffice. We do not know anyone older than 130 years, so ``TINYINT`` will be OK for the Age column.
+We have created a **temporary** Ages table. This will be only a temporary testing table, so there will be only a few rows. ``SMALLINT`` will certainly suffice. We do not know anyone older than 130 years, so ``TINYINT`` will be OK for the Age column::
 
     mysql&gt; INSERT INTO Ages VALUES(1, 43);
     Query OK, 1 row affected (0.00 sec)
@@ -668,7 +711,7 @@ We have created a **temporary** Ages table. This will be only a temporary testin
     mysql&gt; INSERT INTO Ages VALUES(2, 128);
     Query OK, 1 row affected, 1 warning (0.00 sec)
 
-We insert two rows into the table. There is a warning for the second SQL statement.
+We **insert** two rows into the table. There is a warning for the second SQL statement::
     
     mysql&gt; SHOW WARNINGS;
     +---------+------+----------------------------------------------+
@@ -679,11 +722,11 @@ We insert two rows into the table. There is a warning for the second SQL stateme
 
 We use the ``SHOW WARNINGS SQL`` statement to show the last warning message. We have tried to insert a value which is larger than the column data type allows. There is no integer overflow, as we know from the C language. In such a case, the largest allowable integer is written and a warning is issued.
 
-When we are dealing with ages, we do not need negative integer values. MySQL supports unsigned integers. This way we can further optimise our table definitions.
+When we are dealing with ages, we do not need negative integer values. MySQL supports unsigned integers. This way we can further optimise our table definitions::
     
     mysql&gt; ALTER TABLE Ages MODIFY Age TINYINT UNSIGNED;
 
-We use the SQL statement to change the Age column to have a ``TINYINT UNSIGNED`` data type. Now we can insert values from 0 to 255.
+We use the SQL statement to **change** the Age column to have a ``TINYINT UNSIGNED`` data type. Now we can **insert** values from 0 to 255::
     
     mysql&gt; INSERT INTO Ages VALUES(3, 240);
     Query OK, 1 row affected (0.00 sec)
@@ -704,7 +747,9 @@ Floating point numbers represent real numbers in computing. Real numbers measure
 
 A ``FLOAT`` is a single precision floating point number. MySQL uses four bytes to store a FLOAT value. A ``DOUBLE`` is a double precision floating point number. MySQL uses eight bytes to store a ``DOUBLE`` value. ``DECIMAL`` data type is best used for financial calculations.
 
-Floats, doubles and decimals may have specified their precision and scale. In DECIMAL[M, D] the M is the maximum number of digits, the precision. The D is the number of digits to the right of the decimal point. It is the scale. If you have a column with DECIMAL(3, 1), you can insert numbers with maximum of three digits. Two before and one after the decimal point.
+Floats, doubles and decimals may have specified their precision and scale. In **DECIMAL[M, D]** the M is the **maximum** number of digits, the precision. The D is the number of digits to the **right of** the decimal point. It is the scale. 
+
+If you have a column with **DECIMAL(3, 1)**, you can insert numbers with maximum of three digits. Two before and one after the decimal point::
     
     mysql&gt; SELECT 1/3;
     +--------+
@@ -728,15 +773,15 @@ Caution must be exercised when working with floating point values. Floats and do
 
 There is a small rounding error, which is OK in many cases. In many real word situations, we just need to have an approximate value. For example, you have a shop in which you have 7.5321 kg of apples, 4.372 kg of oranges. 
 
-It is perfectly valid to store these two values as 7.5 kg and 4.4 kg. No big deal. On the other hand, when we do exact mathematical calculations; let's say we add some financial data or any scientific calculations, we need more precision. For such cases, we use the DECIMAL data type.
+It is perfectly valid to store these two values as 7.5 kg and 4.4 kg. **No** big deal. On the other hand, when we do exact mathematical calculations; let's say we add some financial data or any scientific calculations, we need more precision. For such cases, we use the DECIMAL data type::
 
     mysql&gt; CREATE TABLE Numbers (Id TINYINT, Floats FLOAT, Decimals DECIMAL(3, 2));
 
-We create a table, in which we are going to store a few floats and decimals.
+We create a table, in which we are going to store a few floats and decimals::
 
     mysql&gt; INSERT INTO Numbers VALUES (1, 1.1, 1.1), (2, 1.1, 1.1), (3, 1.1, 1.1);
 
-We insert three rows into the newly created table.
+We **insert** three rows into the newly created table::
 
     mysql&gt; SELECT * FROM Numbers;
     +------+--------+----------+
@@ -747,7 +792,7 @@ We insert three rows into the newly created table.
     |    3 |    1.1 |     1.10 |
     +------+--------+----------+
 
-This is how the table looks.
+This is how the table looks::
 
     mysql&gt; SELECT SUM(Floats), SUM(Decimals) FROM Numbers;
     +------------------+---------------+
@@ -756,14 +801,17 @@ This is how the table looks.
     | 3.30000007152557 |          3.30 |
     +------------------+---------------+
 
-The two results differ. The decimal calculation is more precise. Due to some internal rounding, the sum of floats is not accurate.
+The two results differ. The decimal ``calculation`` is more precise. Due to some internal rounding, the sum of floats is not accurate.
+
+
 
 Date &amp; time values
-**********************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 MySQL has data types for storing dates and times. It has ``DATE, TIME, DATETIME, YEAR and TIMESTAMP``.
 
-The DATE is used to store dates. MySQL retrieves and displays date values in YYYY-MM-DD format. The supported range is from 1000-01-01 to 9999-12-31.
+The DATE is used to store dates. MySQL retrieves and displays date values in **YYYY-MM-DD** format. The supported range is from 1000-01-01 to 9999-12-31::
 
     mysql&gt; CREATE TABLE Dates(Id TINYINT, Dates DATE);
     mysql&gt; INSERT INTO Dates VALUES(1, '2011-01-24');
@@ -772,7 +820,7 @@ The DATE is used to store dates. MySQL retrieves and displays date values in YYY
     mysql&gt; INSERT INTO Dates VALUES(4, '110127');
     mysql&gt; INSERT INTO Dates VALUES(5, '2011+01+28');
 
-Dates are displayed in MySQL in one format, but we can use various date formats in our SQL statements. The YYYY-MM-DD is the standard format. But we can use any punctuation character between the date parts.
+Dates are displayed in MySQL in one format, but we can use various date formats in our SQL statements. The **YYYY-MM-DD** is the standard format. But we can use any punctuation character between the date parts::
 
     mysql&gt; SELECT * FROM Dates;
     +------+------------+
@@ -785,7 +833,7 @@ Dates are displayed in MySQL in one format, but we can use various date formats 
     |    5 | 2011-01-28 |
     +------+------------+
 
-We have used multiple formats to insert dates into the table. MySQL uses one format to display the dates.
+We have used multiple formats to insert dates into the table. MySQL uses one format to display the dates::
 
     mysql&gt; INSERT INTO Dates VALUES (6, '10000-01-01');
     Query OK, 1 row affected, 1 warning (0.00 sec)
@@ -808,7 +856,7 @@ We have used multiple formats to insert dates into the table. MySQL uses one for
 
 In case we go beyond the range of supported date values a warning is issued. The data is truncated to zero values.
 
-The TIME data type is used to display time in MySQL. It shows values in ``HH:MM:SS`` format. The range is from ``-838:59:59 to 838:59:59``. The hours part of the time format may be greater than 24. It is because TIME data type can be used to denote time intervals. This is also why we can have negative time values.
+The TIME data type is used to display time in MySQL. It shows values in ``HH:MM:SS`` format. The range is from ``-838:59:59 to 838:59:59``. The hours part of the time format may be greater than 24. It is because TIME data type can be used to denote time intervals. This is also why we can have negative time values::
 
     mysql&gt; SELECT TIMEDIFF('23:34:32', '22:00:00');
     +----------------------------------+
@@ -817,7 +865,7 @@ The TIME data type is used to display time in MySQL. It shows values in ``HH:MM:
     | 01:34:32                         |
     +----------------------------------+
 
-We use the ``TIMEDIFF()`` function to subtract two time values.
+We use the ``TIMEDIFF()`` function to subtract two time values::
 
     mysql&gt; SELECT TIME('2011-01-29 11:27:42');
     +-----------------------------+
@@ -826,7 +874,7 @@ We use the ``TIMEDIFF()`` function to subtract two time values.
     | 11:27:42                    |
     +-----------------------------+
 
-We can use the ``TIME()`` function to extract the time part of the date and time value.
+We can use the ``TIME()`` function to extract the time part of the date and time value::
 
     mysql&gt; SELECT TIMEDIFF('211344', 201123);
     +----------------------------+
@@ -837,7 +885,7 @@ We can use the ``TIME()`` function to extract the time part of the date and time
 
 We can write time values in different formats too. The first parameter is a time value in a string format without delimiters. The second is a time value specified as a number.
 
-The ``DATETIME`` values contain both date and time. MySQL retrieves and displays values in YYYY-MM-DD HH:MM:SS format. The supported range is from ``1000-01-01 00:00:00`` to ``9999-12-31 23:59:59``.
+The ``DATETIME`` values contain both date and time. MySQL retrieves and displays values in YYYY-MM-DD HH:MM:SS format. The supported range is from ``1000-01-01 00:00:00`` to ``9999-12-31 23:59:59``::
 
     mysql&gt; SELECT DAYNAME('2011@01@29 11@50@13');
     +--------------------------------+
@@ -846,17 +894,20 @@ The ``DATETIME`` values contain both date and time. MySQL retrieves and displays
     | Saturday                       |
     +--------------------------------+
 
-MySQL displays date and time in only one format. But in our SQL statements, we can use different formats. Any punctuation character may be used as the delimiter between date parts or time parts. In our case, we have used the @ character.
+MySQL displays date and time in only one format. But in our SQL statements, we can use different formats. Any punctuation character may be used as the delimiter **between** date parts or time parts. In our case, we have used the @ character.
 
-The YEAR is a data type used for representing years. MySQL displays YEAR values in YYYY format. It allows us to assign values to YEAR columns using either strings or numbers. The allowable range is from ``1901`` to ``2155``. Illegal year values are converted to 0000.
+The YEAR is a data type used for representing years. MySQL displays YEAR values in **YYYY** format. It allows us to assign values to YEAR columns using either strings or numbers. The allowable range is from ``1901`` to ``2155``. Illegal year values are converted to 0000.
 
-A timestamp is a sequence of characters, denoting the date and/or time at which a certain event occurred. Timestamps are typically used for logging events. In MySQL we have a TIMESTAMP data type for creating timestamps. 
+A timestamp is a sequence of characters, denoting the date and/or time at which a certain event occurred. Timestamps are typically used for logging events. In MySQL we have a **TIMESTAMP** data type for creating timestamps. 
 
 A TIMESTAMP column is useful for recording the date and time of an INSERT or UPDATE operation. It automatically sets to the date and time of the most recent operation if you do not give it a value yourself. The TIMESTAMP data type has a range of ``1970-01-01 00:00:01 UTC`` to ``2038-01-19 03:14:07 UTC``.
 
-The following table summarises the supported TIMESTAMP formats.
+The following table summarises the supported TIMESTAMP formats:
 
-Data type 	Format::
+Data type
+~~~~~~~~~~~~~~~~
+
+Format::
     
     TIMESTAMP(14) 	YYYYMMDDHHMMSS
     TIMESTAMP(12) 	YYMMDDHHMMSS
@@ -866,14 +917,14 @@ Data type 	Format::
     TIMESTAMP(4) 	YYMM
     TIMESTAMP(2) 	YY
     
-The TIMESTAMP data type offers automatic initialisation and updating. We can restrict this data type to have only automatic initialisation or automatic update only.
+The TIMESTAMP data type offers automatic initialisation and updating. We can restrict this data type to have only automatic initialisation or automatic update only::
 
     mysql&gt; CREATE TABLE Prices(Id TINYINT, Price Decimal(8, 2),
         -&gt; Stamp TIMESTAMP);
     mysql&gt; INSERT INTO Prices (Id, Price) VALUES (1, 234.34);
     mysql&gt; INSERT INTO Prices (Id, Price) VALUES (2, 344.12);
 
-We create a table with a TIMESTAMP column. We insert two rows into the table. The Stamp column is not included in the SQL statements. MySQL automatically fills the column.
+We create a table with a *TIMESTAMP* column. We insert two rows into the table. The Stamp column is not included in the SQL statements. MySQL automatically fills the column::
 
     mysql&gt; SELECT * FROM Prices;
     +------+--------+---------------------+
@@ -883,11 +934,11 @@ We create a table with a TIMESTAMP column. We insert two rows into the table. Th
     |    2 | 344.12 | 2011-01-29 13:24:59 |
     +------+--------+---------------------+
 
-The timestamps for the two rows were created. This is the auto-initialisation of the TIMESTAMP data type. This can be turned off by Stamp TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP SQL code.
+The timestamps for the two rows were created. This is the auto-initialisation of the **TIMESTAMP** data type. This can be turned off by Stamp `TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP SQL` code::
 
     mysql&gt; UPDATE Prices SET Price=250.50 WHERE Id=1;
 
-We execute the SQL statement to update the Price column in the first row.
+We execute the SQL statement to update the Price column in the first row::
 
     mysql&gt; SELECT * FROM Prices;
     +------+--------+---------------------+
@@ -900,20 +951,22 @@ We execute the SQL statement to update the Price column in the first row.
 The timestamp of the first column was updated. If we wanted to turn off the auto-update of the TIMESTAMP, we could use the Stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP SQL code.
 
 Strings
-*********************
+----------------
 
 MySQL has the following string data types:
 
-    CHAR
-    VARCHAR
-    BINARY
-    VARBINARY
-    BLOB
-    TEXT
-    ENUM
-    SET
+    * CHAR
+    * VARCHAR
+    * BINARY
+    * VARBINARY
+    * BLOB
+    * TEXT
+    * ENUM
+    * SET
 
-A CHAR is a fixed length character data type. It is declared with a length, CHAR(x), where x can be between 0 to 255. CHAR always uses the same amount of storage space per entry. In case we specify an item which is shorter than the declared length, the value is right-padded with spaces to the specified length. Trailing spaces are removed when the value is retrieved.
+A CHAR is a fixed length character data type. It is declared with a length, CHAR(x), where x can be between 0 to 255. 
+
+CHAR always uses the same amount of storage space per entry. In case we specify an item which is shorter than the declared length, the value is right-padded with spaces to the specified length. Trailing spaces are removed when the value is retrieved::
     
     mysql&gt; CREATE TABLE Chars(Id TINYINT, Chars CHAR(3));
     Query OK, 0 rows affected (0.08 sec)
@@ -934,7 +987,7 @@ A CHAR is a fixed length character data type. It is declared with a length, CHAR
 In the above SQL code, we have created a Chars table, which has one column of the CHAR data type. The length is set to three characters. 
 
 The second SQL statement inserts four rows into the table. Note that there is a warning. 
-With the ``SHOW WARNINGS`` statement we find out that the data to be inserted at the fourth row has been truncated. It is because it exceeded the maximum length allowed.
+With the ``SHOW WARNINGS`` statement we find out that the data to be inserted at the fourth row has been truncated. It is because it exceeded the maximum length allowed::
     
     mysql&gt; SELECT * FROM Chars;
     +------+-------+
@@ -946,7 +999,7 @@ With the ``SHOW WARNINGS`` statement we find out that the data to be inserted at
     |    4 | abc   |
     +------+-------+
 
-This is what we have in the table.
+This is what we have in the table::
 
     mysql&gt; SELECT Id, LENGTH(Chars) AS Length FROM Chars;
     +------+--------+
@@ -962,7 +1015,7 @@ We have retrieved Ids and the length of the characters that we have inserted. Ab
 
 Why do we have different size values for the rows. We would expect each row to have exactly 3 characters. The reason is that MySQL trims spaces for chars at the data retrieval. 
 
-By setting the sql_mode to PAD_CHAR_TO_FULL_LENGTH the spaces are also trimmed.
+By setting the sql_mode to PAD_CHAR_TO_FULL_LENGTH the spaces are also trimmed::
 
     mysql&gt; SET sql_mode = 'PAD_CHAR_TO_FULL_LENGTH';
     Query OK, 0 rows affected (0.00 sec)
@@ -984,7 +1037,7 @@ By changing the sql_mode, we get the expected results.
 
 ``VARCHAR`` values are not padded when they are stored. Trailing spaces are retained when values are stored and retrieved. 
 
-Most shorter string data types are stored in this data type. For example emails, names of people, of merchandise, addresses etc.
+Most shorter string data types are stored in this data type. For example emails, names of people, of merchandise, addresses etc::
     
     mysql&gt; CREATE TABLE FirstNames(Id TINYINT, FirstName VARCHAR(20));
     Query OK, 0 rows affected (0.05 sec)
@@ -994,7 +1047,7 @@ Most shorter string data types are stored in this data type. For example emails,
     Query OK, 6 rows affected (0.00 sec)
     Records: 6  Duplicates: 0  Warnings: 0
 
-We create a FirstNames table in which we store six first names.
+We create a FirstNames table in which we store six first names::
 
     mysql&gt; SELECT Id, LENGTH(FirstName) AS Length FROM FirstNames;
     +------+--------+
@@ -1016,22 +1069,22 @@ They have no character sets. Sorting and comparison are based on the numeric val
 
 The range of the BINARY data types is from 0 to 255. It stores values in fixed length. The range of the VARBINARY is from 0 to 65535.
 
-A BLOB is a binary large object data type. It can hold a variable amount of binary data. It can be used to store binary data like images or documents. BLOB has four types:
+A BLOB is a binary large object data type. It can hold a variable amount of binary data. It can be used to store binary data like images or documents. BLOB has four types::
+    
+    +-----------------+-----------------------+
+    |    type         |     Range in bytes    |
+    +-----------------+-----------------------+
+    |  TINYBLOB       |      0 - 255          |
+    +-----------------+-----------------------+
+    |  BLOB           |      0 - 65535        |
+    +-----------------+-----------------------+
+    |  MEDIUMBLOB     |      0 - 16777215     |
+    +-----------------+-----------------------+
+    |  LONGBLOB       |      0 - 4294967295   |
+    +-----------------+-----------------------+
+    
 
-+-----------------+-----------------------+
-|    type         |     Range in bytes    |
-+-----------------+-----------------------+
-|  TINYBLOB       |      0 - 255          |
-+-----------------+-----------------------+
-|  BLOB           |      0 - 65535        |
-+-----------------+-----------------------+
-|  MEDIUMBLOB     |      0 - 16777215     |
-+-----------------+-----------------------+
-|  LONGBLOB       |      0 - 4294967295   |
-+-----------------+-----------------------+
-
-
-A TEXT datatype is used for storing large textual data. For example articles, blogs, pages or comments.
+A TEXT datatype is used for storing large textual data. For example articles, blogs, pages or comments:
 
 +------------+--------------------+
 |type        |  Range in bytes    |
@@ -1046,7 +1099,7 @@ A TEXT datatype is used for storing large textual data. For example articles, bl
 +------------+--------------------+
 
 
-The last data types we are going to mention are ``ENUM`` and SET The **ENUM** is a string object with a value chosen from a permitted list of values. They are enumerated explicitly in the column specification. We can insert only one value from the list.
+The last data types we are going to mention are ``ENUM`` and SET The **ENUM** is a string object with a value chosen from a permitted list of values. They are enumerated explicitly in the column specification. We can insert only one value from the list::
 
     mysql&gt; CREATE TABLE SizeTable(Size ENUM('S', 'M', 'L', 'XL', 'XXL'));
 
@@ -1066,7 +1119,7 @@ We insert two rows in the table.
     | Warning | 1265 | Data truncated for column 'Size' at row 1 |
     +---------+------+-------------------------------------------+
 
-Large was not mentioned in the list. In such a case a warning is issued. It says that the data was truncated.
+Large was not mentioned in the list. In such a case a warning is issued. It says that the data was truncated::
 
     mysql&gt; SELECT * FROM SizeTable;
     +------+
@@ -1079,22 +1132,23 @@ Large was not mentioned in the list. In such a case a warning is issued. It says
 
 We have two regular values in the table. In the third case, empty text was written.
 
-A ``SET`` is a string object that can have zero or more values, each of which must be chosen from a list of permitted values. It is similar to the ENUM data type. The difference is that it can contain zero or more values from the list of permitted values. 
+A ``SET`` is a string object that can have zero or more values, each of which must be chosen from a **list of** permitted values. It is similar to the ENUM data type. The difference is that it can contain zero or more values from the list of permitted values. 
 
 </t>
 <t tx="root.20160211145428.1703">Creating, altering and dropping tables in MySQL
+========================================================
 
 :from: http://zetcode.com/databases/mysqltutorial/tables/
 
 
 
- In this part of the MySQL tutorial, we will be creating, altering, and dropping tables.
+In this part of the MySQL tutorial, we will be creating, altering, and dropping tables.
 
 We will use the following SQL statements:
 
-    CREATE TABLE
-    ALTER TABLE
-    DROP TABLE
+    * CREATE TABLE
+    * ALTER TABLE
+    * DROP TABLE
 
 The ``CREATE, ALTER, and DROP`` statements are not limited to tables. We can use them to create other database objects like events, triggers, views, functions or procedures. These statements are part of the **Data Definition Language (DDL)** of the SQL specification.
 ``CREATE`` and ``DROP`` statements
@@ -1105,7 +1159,7 @@ To create a table, we give a name to a table and to its columns. Each column has
     
     mysql&gt; CREATE TABLE Testing(Id INTEGER);
 
-We create a simple Testing table with the ``CREATE TABLE`` statement. The table name is ``Testing``. The table has one column called Id. And column's datatype is ``INTEGER``.
+We create a simple Testing table with the ``CREATE TABLE`` statement. The table name is ``Testing``. The table has one column called Id. And column's datatype is ``INTEGER`` ::
 
     mysql&gt; SHOW CREATE TABLE Testing;
     +---------+------------------------------------------
@@ -1248,7 +1302,7 @@ We create a new table Books, with Id, Title and Author columns.
     mysql&gt; INSERT INTO Books(Id, Title, Author) VALUES(1, 'War and Peace', 
         -&gt; 'Leo Tolstoy');
 
-This is the classic ``INSERT`` SQL statement. We have specified all column names after the table name and all values after the VALUES keyword. We add our first row into the table.
+This is the classic ``INSERT`` SQL statement. We have specified all column names after the table name and all values after the VALUES keyword. We add our first row into the table::
 
     mysql&gt; SELECT * FROM Books;
     +----+---------------+-------------+
@@ -1264,7 +1318,7 @@ We have inserted our first row into the Books table.
 
 We add a new title into the Books table. We have omitted the Id column. 
 
-The Id column has ``AUTO_INCREMENT`` attribute. This means that MySQL will increase the Id column automatically. The value by which the ``AUTO_INCREMENT`` column is increased is controlled by auto_increment_increment system variable. By default it is **1**.
+The Id column has ``AUTO_INCREMENT`` attribute. This means that MySQL will increase the Id column automatically. The value by which the ``AUTO_INCREMENT`` column is increased is controlled by auto_increment_increment system variable. By default it is **1**::
 
     mysql&gt; SELECT * FROM Books;
     +----+------------------------+--------------------+
@@ -1284,7 +1338,7 @@ In this SQL statement, we did not specify any column names after the table name.
     mysql&gt; REPLACE INTO Books VALUES(3, 'Paradise Lost', 'John Milton');
     Query OK, 2 rows affected (0.00 sec)
     
-The ``REPLACE`` statement is a MySQL extension to the SQL standard. It inserts a new row or replaces the old row if it collides with an existing row. In our table, there is a row with Id=3. So our previous statement replaces it with a new row. There is a message that two rows were affected. One row was deleted and one was inserted.
+The ``REPLACE`` statement is a MySQL extension to the SQL standard. It inserts a new row or replaces the old row if it collides with an existing row. In our table, there is a row with Id=3. So our previous statement replaces it with a new row. There is a message that two rows were affected. One row was deleted and one was inserted::
 
     mysql&gt; SELECT * FROM Books WHERE Id=3;
     +----+---------------+-------------+
@@ -1317,7 +1371,7 @@ Here we insert all data into the Books2 that we select from the Books table.
     |  3 | Paradise Lost          | John Milton        |
     +----+------------------------+--------------------+
 
-We verify it. All OK.
+We verify it. All OK::
 
     mysql&gt; INSERT INTO Books(Title, Author) VALUES ('The Insulted and Humiliated',
         -&gt; 'Fyodor Dostoyevsky'), ('Cousin Bette', 'Honore de Balzac');
@@ -1357,7 +1411,7 @@ We show the contents of the books.csv file.
         -&gt; FIELDS TERMINATED BY ','    
         -&gt; LINES TERMINATED BY '\n';
 
-We use the ``LOAD DATA INFILE`` syntax to populate the Books table from the books.csv file.
+We use the ``LOAD DATA INFILE`` syntax to populate the Books table from the books.csv file::
 
     mysql&gt; SELECT * FROM Books;
     +----+-----------------------------+--------------------+
@@ -1372,11 +1426,11 @@ We use the ``LOAD DATA INFILE`` syntax to populate the Books table from the book
 
 All OK.
 
-We can load data from XML files as well. First, we write data from the Books table into an XML file.
+We can load data from XML files as well. First, we write data from the Books table into an XML file::
 
     $ mysql -uroot -p --xml -e 'SELECT * FROM mydb.Books' &gt; books.xml
 
-The mysql monitor has an --xml option, which enables us to dump data in XML format. The -e option executes a statement and quits the monitor.
+The mysql monitor has an --xml option, which enables us to dump data in XML format. The -e option executes a statement and quits the monitor::
     
     $ cat books.xml 
     &lt;?xml version="1.0"?&gt;
@@ -1421,11 +1475,11 @@ This is our XML file.
 We load data from the XML file. Note that LOAD XML statement is available for MySQL 5.5 and newer.
 Deleting data
 
-In MySQL, we can delete data using the ``DELETE and TRUNCATE`` statements. The ``TRUNCATE`` statement is a MySQL extension to the SQL specification. First, we are going to delete one row from a table. We will use the Books2 table that we have created previously.
+In MySQL, we can delete data using the ``DELETE and TRUNCATE`` statements. The ``TRUNCATE`` statement is a MySQL extension to the SQL specification. First, we are going to delete one row from a table. We will use the Books2 table that we have created previously::
     
     mysql&gt; DELETE FROM Books2 WHERE Id=1;
 
-We delete a row with Id=1.
+We delete a row with Id=1::
 
     mysql&gt; SELECT * FROM Books2;
     +----+------------------------+--------------------+
@@ -1443,7 +1497,7 @@ We verify the data.
 These two SQL statements delete all data in the table.
 Updating data
 
-The UPDATE statement is used to change the value of columns in selected rows of a table.
+The UPDATE statement is used to change the value of columns in selected rows of a table::
     
     mysql&gt; SELECT * FROM Books;
     +----+-----------------------------+--------------------+
@@ -1463,7 +1517,7 @@ Say we wanted to change 'Leo Tolstoy' to 'Lev Nikolayevich Tolstoy' table. The f
     mysql&gt; UPDATE Books SET Author='Lev Nikolayevich Tolstoy'
         -&gt; WHERE Id=1;
     
-The SQL statement sets the author column to 'Lev Nikolayevich Tolstoy' for the column with Id=1.
+The SQL statement sets the author column to 'Lev Nikolayevich Tolstoy' for the column with Id=1::
 
     mysql&gt; SELECT * FROM Books WHERE Id=1;
     +----+---------------+--------------------------+
@@ -2981,59 +3035,63 @@ In this part of the MySQL tutorial, we worked with the built-in MySQL functions.
 
 </t>
 <t tx="root.20160214141220.1574">Install MySQL On Slackware
-##################################
+=====================================
+
 
 :from: http://docs.slackware.com/howtos:databases:install_mysql_on_slackware
 
 Installing MySQL
-****************************
+----------------------------------------
 
 Install MySQL from the official Slackware discs or using ``slackpkg``. If you performed a full install of Slackware, then you already have MySQL on your computer.
-Configuring MySQL
+Configuring MySQL:
 
-    #.Create the needed database(s) and set their permissions properly
+#. Create the needed database(s) and set their permissions properly
     As root, run:
 
         root@darkstar# mysql_install_db --user=mysql
 
     The user specified by –user will own the database files, so it's important to set the right user here, otherwise MySQL won't be able to write to your databases. By default MySQL in Slackware runs as user “mysql”, so that is the safe choice.
     
-    #.Enable execution of the rc script to start MySQL automatically on boot
+#. Enable execution of the rc script to start MySQL automatically on boot
     This is optional.
-
+    
+    .. code-block:: sh
+    
         root@darkstar# chmod 755 /etc/rc.d/rc.mysqld
 
-    #.Enable networking if needed
+
+#. Enable networking if needed
     Networking is disabled by default to improve security. If you want to allow network connections, comment out this line in /etc/rc.d/rc.mysqld:
 
         rc.mysqld
 
             #SKIP="--skip-networking"
 
-    #.Start mysqld
+#. Start mysqld
 
         root@darkstar# /etc/rc.d/rc.mysqld start
 
     and proceed to the next section “Securing MySQL”.
 
 Securing MySQL
-************************************
+-----------------------
 
 :tips:
     You have a choice : Manual or Automatic configuration of secure access
 
 Automatic configuration of secure access
 
-    #.Run the following command, and answer the questions
+#. Run the following command, and answer the questions
 
         root@darkstar# /usr/bin/mysql_secure_installation
 
     The initial root password is “” (the **empty** string), so just hit ENTER when the above command asks for the password
 
 Manual configuration of secure access
-****************************************************
+----------------------------------------------------
 
-    #.Set a password for MySQL's root account
+#. Set a password for MySQL's root account
 
         root@darkstar# mysqladmin -u root password 'new-password-here'
 
@@ -3044,14 +3102,15 @@ Manual configuration of secure access
 :tips:
         Check the mysql_install_db results, these commands are printed, you can copy/paste them. The hostname will already be replaced by yours.
 
-Connecting to your MySQL server
-**************************************************
 
-    #.Connect to your MySQL server using the following command
+Connecting to your MySQL server
+--------------------------------------
+
+#. Connect to your MySQL server using the following command
 
             user@darkstar$ mysql -u root -p
 
-    #.For security reasons you should delete the anonymous user
+#. For security reasons you should delete the anonymous user
         For the localhost server:
 
         mysql&gt; use mysql
@@ -3067,9 +3126,9 @@ Connecting to your MySQL server
 Adding Unicode support
 ```````````````````````````
 
-    #.Change directory to the /etc/ directory, and select the configuration which you prefer. For a “simple” database service without heavy MySQL load, it is recommended to use “my-large.cnf” if you have 2 GB of RAM or more. Copy the configuration file you chose and name the copy /etc/my.cnf.
+#. Change directory to the /etc/ directory, and select the configuration which you prefer. For a “simple” database service without heavy MySQL load, it is recommended to use “my-large.cnf” if you have 2 GB of RAM or more. Copy the configuration file you chose and name the copy /etc/my.cnf.
     
-    #.Edit /etc/my.cnf adding these lines in the section “[mysqld]”:
+#. Edit /etc/my.cnf adding these lines in the section “[mysqld]”:
 
         [mysqld]
         collation-server = utf8_unicode_ci
@@ -3081,13 +3140,14 @@ Adding Unicode support
 More on Unicode / UTF8 character set support is described here: http://stackoverflow.com/questions/3513773/change-mysql-default-character-set-to-utf8-in-my-cnf
 
 Troubleshooting
-*****************************
+-------------------------
 
-    *.Server start errors can be seen in the error log that is located by default at /var/lib/mysql/&lt;hostname&gt;.err. Another option is to run the server directly and direct the output to the console (use Ctrl+\ to stop the server). Run:
+
+* Server start errors can be seen in the error log that is located by default at /var/lib/mysql/&lt;hostname&gt;.err. Another option is to run the server directly and direct the output to the console (use Ctrl+\ to stop the server). Run::
 
         root@darkstar# /usr/bin/mysqld_safe --console
 
-    *.Resetting the root password can be done by creating a new cnf file and add the following lines (please change the password in this example):
+* Resetting the root password can be done by creating a new cnf file and add the following lines (please change the password in this example):
 
         mysql_new.cnf
 
@@ -3099,7 +3159,7 @@ Troubleshooting
         root@darkstar# /usr/bin/mysqld_safe --defaults-file="new_cnf_file.cnf"
 
 Sources
-```````````````````````
+-----------------
 
     Originally written by arfon
 
